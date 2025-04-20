@@ -1,0 +1,113 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MDIPaint.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:MDIPaint.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MDIPaint.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="MDIPaint">
+
+
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*">
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Файл">
+                    <MenuItem Header="Новый" Command="{Binding CreateNewLayout}" HotKey="Ctrl+n"/>
+                    <MenuItem Header="Открыть..." Command="{Binding LoadAsync}"  HotKey="Ctrl+o"/>
+                    <Separator />
+                    <MenuItem Header="Сохранить..." Command="{Binding SaveConditionalAsync}" HotKey="Ctrl+s"/>
+                    <MenuItem Header="Сохранить как..." Command="{Binding SaveAsync}" HotKey="Shift+Ctrl+s"/>
+                    <Separator />
+                    <MenuItem Header="Выход" HotKey="Shift+Escape"/>
+                </MenuItem>
+                <MenuItem Header="Рисунок">
+                    <MenuItem Header="Размер холста..." />
+                    <Separator />
+                    <MenuItem Header="Увеличить +" Command="{Binding OnZoomPlus}" HotKey="Ctrl++"/>
+                    <MenuItem Header="Уменьшить -" Command="{Binding OnZoomMinus}" HotKey="Ctrl+-"/>
+                </MenuItem>
+                <MenuItem Header="Окно">
+                    <MenuItem Header="Каскадом..." Command="{Binding OnPositionCascade}" HotKey="Shift+k"/>
+                    <MenuItem Header="Слева направо" Command="{Binding OnLeftToRightCascade}" HotKey="Shift+r"/>
+                    <MenuItem Header="Сверху вниз" Command="{Binding OnTopToBottomCascade}" HotKey="Shift+d"/>
+                    <MenuItem Header="Упорядочить значки" />
+                </MenuItem>
+                <MenuItem Header="Справка">
+                    <MenuItem Header="О программе..." Click="AboutProgram_OnClick" HotKey="f1"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel Orientation="Horizontal" Spacing="3">
+                <Button Command="{Binding Red_OnClick}" HotKey="Ctrl+D1">
+                    <Ellipse HorizontalAlignment="Left" Width="30" Height="30" Fill="Red" />
+                </Button>
+                <Button Command="{Binding Blue_OnClick}" HotKey="Ctrl+D2">
+                    <Ellipse HorizontalAlignment="Left" Width="30" Height="30" Fill="Blue" />
+                </Button>
+
+                <Button Command="{Binding  Green_OnClick}" HotKey="Ctrl+D3">
+                    <Ellipse HorizontalAlignment="Left" Width="30" Height="30" Fill="Green" />
+                </Button>
+
+                <ContentControl Content="{Binding ColorPalette}"/>
+
+                <Slider Minimum="1" Maximum="63" Width="100"
+                        Value="{Binding SliderValue}" />
+                <NumericUpDown Increment="1" Minimum="1" Maximum="63" Value="{Binding SliderValue}"
+                               VerticalAlignment="Center">
+                </NumericUpDown>
+                <ComboBox VerticalAlignment="Center" SelectedIndex="{Binding Shape}">
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Line.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Кисть"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Ellipse.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Эллипс"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Eraser.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Ластик"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Line.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Линия"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Text.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Текст"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/Bucket.png" Width="20" Height="20"></Image>
+                            <TextBlock Text="Заливка"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/RightArrow.png " Width="20" Height="20" />
+                            <TextBlock Text="Стрелка вправо"></TextBlock>
+                        </StackPanel>
+                    </ComboBoxItem>
+                </ComboBox>
+                <CheckBox IsChecked="{Binding isFill}">Использовать заливку</CheckBox>
+            </StackPanel>
+        </StackPanel>
+
+        <ContentControl x:Name="MainContentControl" Grid.Column="0" Grid.Row="1"
+                        Content="{Binding MainCanvas}" />
+
+    </Grid>
+</Window>

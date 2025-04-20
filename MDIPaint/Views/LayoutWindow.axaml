@@ -1,0 +1,63 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:MDIPaint.ViewModels"
+             xmlns:painCanvas="clr-namespace:MDIPaint.ViewModels.PainCanvas"
+             x:Class="MDIPaint.Views.LayoutWindow"
+             Background="White"
+             Width="200" Height="100"
+             x:DataType="viewModels:LayoutWindowViewModel" 
+             PointerPressed="InputElement_OnPointerPressed">
+    <Design.DataContext>
+        <viewModels:LayoutWindowViewModel />
+    </Design.DataContext>
+    
+    <Grid>
+        <Border Background="DarkGray">
+            <Grid Margin="1,1,1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Name="TopPanel" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="LightGray"
+                        PointerPressed="Header_PointerPressed"
+                        PointerMoved="Header_PointerMoved"
+                        PointerReleased="Header_PointerReleased"
+                        Cursor="SizeAll">
+                    <TextBlock Text="Окно рисования" Margin="5" VerticalAlignment="Center" />
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1">
+                    <Button Background="CornflowerBlue" 
+                            Content="—" Margin="2" Padding="5,2"
+                            Click="MinimizeButton_Click"/>
+                    <Button Content="▢"
+                            Margin="2" Padding="5,2"
+                            Click="MaximizeButton_Click" />
+                    <Button Background="Red"
+                            Content="X"
+                            Margin="2" Padding="5,2"
+                            Click="CloseButton_Click" />
+                </StackPanel>
+                
+                
+                <ContentControl Grid.Row="1" Grid.Column="0" Cursor="{Binding PaintCursor}"
+                                Width="{Binding Layout.FixedWidth}"
+                                Height="{Binding Layout.FixedHeight}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Content="{Binding Layout}" />
+            </Grid>
+        </Border>
+
+      
+        <Border BorderBrush="{Binding BorderColor}" 
+                BorderThickness="5" Name="ResizeBorder"
+                PointerPressed="ResizeBorder_PointerPressed"
+                PointerMoved="ResizeBorder_PointerMoved"
+                PointerReleased="ResizeBorder_PointerReleased"/>
+    </Grid>
+</UserControl>

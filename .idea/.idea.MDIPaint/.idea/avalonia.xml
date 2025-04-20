@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="MDIPaint/App.axaml" value="MDIPaint/MDIPaint.csproj" />
+        <entry key="MDIPaint/Views/LayoutWindow.axaml" value="MDIPaint/MDIPaint.csproj" />
+        <entry key="MDIPaint/Views/MainWindow.axaml" value="MDIPaint/MDIPaint.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
