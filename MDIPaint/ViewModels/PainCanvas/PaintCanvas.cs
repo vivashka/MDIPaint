@@ -35,9 +35,6 @@ public class PaintCanvas : ContentControl
 
     private TextItem _currentTextItem;
     private readonly List<TextItem> _textItems = new();
-
-    [Reactive] public string TextContent { get; set; } = "Новый текст";
-    [Reactive] public float TextSize { get; set; } = 24f;
     [Reactive] public SKTypeface TextFont { get; set; } = SKTypeface.Default;
 
 
@@ -167,27 +164,36 @@ public class PaintCanvas : ContentControl
         _lastPoint = position;
         _startPoint = position;
         _currentPoints.Clear();
-
-        if (CurrentShape == ShapeType.Eraser)
+        switch (CurrentShape)
         {
-            ErasePixels(position);
-        }
-        else if (CurrentShape == ShapeType.Text)
-        {
-            StartTextInput(position);
-            e.Handled = true;
-        }
-        else if (CurrentShape == ShapeType.Bucket)
-        {
-            PerformFloodFill(position.ToSKPoint());
-            e.Handled = true;
+            case ShapeType.Polyline:
+                DrawFreehand(position);
+                break;
+            case ShapeType.Ellipse:
+                DrawPreviewShape(position);
+                break;
+            case ShapeType.Eraser:
+                ErasePixels(position);
+                break;
+            case ShapeType.Line:
+                DrawPreviewShapeLine(position);
+                break;
+            case ShapeType.RightArrow:
+                DrawPreviewArrow(position);
+                break;
+            case ShapeType.Text:
+                StartTextInput(position);
+                break;
+            case ShapeType.Bucket:
+                PerformFloodFill(position.ToSKPoint());
+                break;
         }
     }
 
     private void OnPointerMoved(object sender, PointerEventArgs e)
     {
         var position = e.GetPosition(_innerCanvas);
-        _lastPoint = position;
+        
         UpdateEraserCursor(position);
 
         if (!_isDrawing) return;
@@ -210,6 +216,7 @@ public class PaintCanvas : ContentControl
                 DrawPreviewArrow(position);
                 break;
         }
+        _lastPoint = position;
     }
 
     private void OnPointerReleased(object sender, PointerReleasedEventArgs e)
@@ -223,7 +230,6 @@ public class PaintCanvas : ContentControl
     {
         using var paint = CreatePaint();
         _skCanvas.DrawLine(_lastPoint.ToSKPoint(), position.ToSKPoint(), paint);
-        _lastPoint = position;
         UpdateImageSource();
     }
 
