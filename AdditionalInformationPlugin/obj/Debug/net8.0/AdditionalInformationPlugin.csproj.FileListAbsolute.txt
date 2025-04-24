@@ -1,0 +1,16 @@
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\bin\Debug\net8.0\AdditionalInformationPlugin.deps.json
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\bin\Debug\net8.0\AdditionalInformationPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\bin\Debug\net8.0\AdditionalInformationPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\bin\Debug\net8.0\PluginInterface.dll
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\bin\Debug\net8.0\PluginInterface.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.csproj.AssemblyReference.cache
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.AssemblyInfoInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.AssemblyInfo.cs
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.csproj.CoreCompileInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.sourcelink.json
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\Addition.36B982C0.Up2Date
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\refint\AdditionalInformationPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\AdditionalInformationPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\AdditionalInformationPlugin\obj\Debug\net8.0\ref\AdditionalInformationPlugin.dll

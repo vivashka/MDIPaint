@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
@@ -8,8 +11,10 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Skia;
+using BWPlugin;
 using MDIPaint.Models.Enum;
 using MDIPaint.Views;
+using PluginInterface;
 using ReactiveUI.Fody.Helpers;
 using SkiaSharp;
 
@@ -28,6 +33,8 @@ public class PaintCanvas : ContentControl
     private readonly List<SKPoint> _currentPoints = new();
     private Ellipse _eraserCursor;
 
+    
+
     public double ScaleFactor { get; set; } = 1.0;
     private const double MinScale = 0.1;
     private const double MaxScale = 4.0;
@@ -36,8 +43,7 @@ public class PaintCanvas : ContentControl
     private TextItem _currentTextItem;
     private readonly List<TextItem> _textItems = new();
     [Reactive] public SKTypeface TextFont { get; set; } = SKTypeface.Default;
-
-
+    
     public bool isFill { get; set; }
 
     private SKBitmap _previewBitmap;
@@ -590,6 +596,24 @@ public class PaintCanvas : ContentControl
         }
 
         UpdateTempImageSource(_previewBitmap);
+    }
+    
+    public async Task SetPluginAsync(Type filter, IProgress<int> progress, CancellationTokenSource cancelTokenSource)
+    {
+        try
+        {
+            CancellationToken token = cancelTokenSource.Token;
+            IPlugin plugin = (IPlugin)Activator.CreateInstance(filter);
+            await plugin.Transform(_bitmap, progress, token);
+            cancelTokenSource.Dispose();
+            UpdateImageSource();
+        }
+        catch (Exception e)
+        {
+            cancelTokenSource.Dispose();
+            Console.WriteLine(e);
+        }
+        
     }
 
     private void DrawHollowArrow(SKCanvas canvas, SKPoint start, SKPoint end, SKPaint paint)

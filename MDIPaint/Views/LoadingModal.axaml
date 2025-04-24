@@ -1,0 +1,27 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewsModel="clr-namespace:MDIPaint.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MDIPaint.Views.LoadingModal"
+        Title="LoadingModal"
+        x:DataType="viewsModel:LoadingModalViewModel">
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0, 0, 0, 1">
+            <TextBlock FontWeight="Bold" HorizontalAlignment="Stretch" FontSize="18" Text="{Binding TitleWindow}" />
+        </Border>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                      Grid.Column="0">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Margin="0, 10" Text="{Binding Text}" FontSize="18" />
+                <ProgressBar Margin="0, 10" HorizontalAlignment="Center" ShowProgressText="True" Maximum="100"
+                             Minimum="0" Value="{Binding Progress}" Height="20" IsVisible="True" />
+                <Button Margin="0, 15" HorizontalAlignment="Center" Content="Отмена" Command="{Binding CancelCommand}"
+                        FontWeight="Bold" FontSize="24"
+                        Background="Red" />
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</Window>

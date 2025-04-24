@@ -22,7 +22,13 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/vovac/RiderProjects/MDIPaint/MDIPaint/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/vovac/RiderProjects/MDIPaint/MDIPaint/Views/InformationWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/vovac/RiderProjects/MDIPaint/MDIPaint/Views/LayoutWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/vovac/RiderProjects/MDIPaint/MDIPaint/Views/LoadingModal.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/vovac/RiderProjects/MDIPaint/MDIPaint/Views/MainWindow.axaml]

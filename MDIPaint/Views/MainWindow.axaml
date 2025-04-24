@@ -38,6 +38,14 @@
                 <MenuItem Header="Справка">
                     <MenuItem Header="О программе..." Click="AboutProgram_OnClick" HotKey="f1"/>
                 </MenuItem>
+                <ContentControl Content="{Binding PluginsItems}">
+                    
+                </ContentControl>
+                <!-- <MenuItem Header="Фильтр" SelectedIndex="{Binding  Filter}"> -->
+                <!--     <MenuItem Header="Черно белый" Command="{Binding SetPlugin}"></MenuItem> -->
+                <!--     <MenuItem Header="Матричный медианный" Command="{Binding SetPlugin}"></MenuItem> -->
+                <!--     <MenuItem Header="Дата и геолокация" Command="{Binding SetPlugin}"></MenuItem> -->
+                <!-- </MenuItem> -->
             </Menu>
             <StackPanel Orientation="Horizontal" Spacing="3">
                 <Button Command="{Binding Red_OnClick}" HotKey="Ctrl+D1">

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Lz8qQtUgseseaUJT1Ly5eukQ6SmTiOagcvWtDy8Fes7ZUtlMyrRfQ0SzTW8YqdwnTG32gre0F4/QYQYSuMPkRg==",
+  "dgSpecHash": "aIV9CaD8w4DZ+r1cgAWs/T1XsGxtoSPFmHSM+C89LlGuI/uzjsW0skk5ZAM1+LG29szA6Kj7zWPLnb0CoYqMuA==",
   "success": true,
   "projectFilePath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\AdditionalInformationPlugin\\AdditionalInformationPlugin.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp\\3.118.0-preview.2.3\\skiasharp.3.118.0-preview.2.3.nupkg.sha512",
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.118.0-preview.2.3\\skiasharp.nativeassets.macos.3.118.0-preview.2.3.nupkg.sha512",
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.118.0-preview.2.3\\skiasharp.nativeassets.win32.3.118.0-preview.2.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uvQhqX9htqrHSFqWUea+8ctU0tNQWWTdzBTakPZx4bPHcK1cwi00ioqrJMzTcOECvuFZcDHlMgVN/nZEGvGPcw==",
+  "dgSpecHash": "b0Rn+5KHKoj5Gk2IG4jJgz7sY5hqPGFuwDwZveA3zLOBLpdYjIuvHWznpmz2MV+0eQhrdDXSZkUeNTfrdnIsvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\MatrixMedianPlugin\\MatrixMedianPlugin.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp\\3.118.0-preview.2.3\\skiasharp.3.118.0-preview.2.3.nupkg.sha512",
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.118.0-preview.2.3\\skiasharp.nativeassets.macos.3.118.0-preview.2.3.nupkg.sha512",
+    "C:\\Users\\vovac\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.118.0-preview.2.3\\skiasharp.nativeassets.win32.3.118.0-preview.2.3.nupkg.sha512"
+  ],
   "logs": []
 }

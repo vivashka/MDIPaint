@@ -1,42 +1,41 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reactive;
+using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
-using Avalonia.Collections;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using Avalonia.Threading;
+using MDIPaint.Models;
 using MDIPaint.Models.Enum;
 using MDIPaint.ViewModels.Contracts;
-using MDIPaint.ViewModels.PainCanvas;
 using MDIPaint.Views;
+using PluginInterface;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using SkiaSharp;
+using Splat;
 
 namespace MDIPaint.ViewModels;
 
 public partial class MainWindowViewModel : ReactiveObject
 {
     private byte _sliderValue = 1;
-    
-    [Reactive] public double EraserRadius { get; set; } = 20;
 
     [Reactive] public ShapeType Shape { get; set; } = ShapeType.Polyline;
-    
+
     [Reactive] public bool isFill { get; set; } = false;
+
+    [Reactive] public Filters Filter { get; set; } = Filters.BW;
 
     public byte SliderValue
     {
         get => _sliderValue;
         set { this.RaiseAndSetIfChanged(ref _sliderValue, value); }
     }
-    
 
     [Reactive] public Canvas MainCanvas { get; set; }
 
@@ -47,10 +46,20 @@ public partial class MainWindowViewModel : ReactiveObject
 
     public ReactiveCommand<Unit, Unit> SaveCommand { get; }
 
+    public readonly Plugins Plugins;
+
+    public MenuItem PluginsItems { get; set; } = new MenuItem();
+
+
     public MainWindowViewModel(IDialogService dialogService)
     {
         _dialogService = dialogService;
         ColorPalette = new ColorPicker();
+
+        PluginsItems.Header = "Фильтр";
+
+
+        PluginsItems.SelectedIndex = (int)Filter;
 
         SaveCommand = ReactiveCommand.CreateFromTask(SaveAsync);
 
@@ -58,15 +67,107 @@ public partial class MainWindowViewModel : ReactiveObject
         {
             Background = Brushes.LightGray, Name = "MainCanvas"
         };
-        
-        
+        MainCanvas.Loaded += (sender, args) => FindPlugins();
 
+        Plugins = Locator.GetLocator().GetService<Plugins>();
         this.WhenAnyValue(p_vm => p_vm.SliderValue).Subscribe(_ => ChangeBrushSize());
         this.WhenAnyValue(p_vm => p_vm.ColorPalette.Color).Subscribe(_ => ChangeBrushColor());
         this.WhenAnyValue(p_vm => p_vm.Shape).Subscribe(_ => ChangeShape());
         this.WhenAnyValue(p_vm => p_vm.MainCanvas).Subscribe(_ => ChangeMainLayout());
         this.WhenAnyValue(p_vm => p_vm.isFill).Subscribe(_ => ChangeFillState());
     }
+
+    void FindPlugins()
+    {
+        // папка с плагинами
+        string folder = AppDomain.CurrentDomain.BaseDirectory;
+
+        // dll-файлы в этой папке
+        string[] files = Directory.GetFiles(folder, "*.dll");
+
+        foreach (string file in files)
+        {
+            try
+            {
+                Assembly assembly = Assembly.LoadFile(file);
+
+                foreach (Type type in assembly.GetTypes())
+                {
+                    Type iface = type.GetInterface("PluginInterface.IPlugin");
+
+                    if (iface != null)
+                    {
+                        IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
+                        if (!Plugins.Filters.ContainsKey(plugin.Name))
+                        {
+                            Plugins.Filters[plugin.Name] = true;
+                        }
+
+                        var item = new MenuItem
+                        {
+                            Header = plugin.Name,
+                            IsVisible = Plugins.Filters[plugin.Name]
+                        };
+                        item.Header = plugin.Name;
+                        item.Command = ReactiveCommand.Create( () =>  OnSetPlugin(plugin));
+                        PluginsItems.Items.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка {ex}");
+            }
+        }
+
+        string pluginsText = "Загруженные плагины:\n";
+
+        byte counter = 1;
+        foreach (var (key, isActive) in Plugins.Filters)
+        {
+            if (isActive)
+            {
+                pluginsText += $"{counter}. {key}\n";
+                counter++;
+            }
+        }
+
+        Plugins.SavePluginsToAppSettings(Plugins);
+        InformationModal(pluginsText);
+    }
+
+    private async void OnSetPlugin(IPlugin plugin)
+    {
+        var loading = new LoadingModal
+        {
+            Width = 300,
+            Height = 150
+        };
+        var layout = MainCanvas.Children.OfType<LayoutWindow>().MaxBy(w => w.ZIndex)!
+            .PaintArea.Layout;
+
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        
+        loading.ViewModel = new LoadingModalViewModel(cancellationTokenSource);
+        loading.ViewModel.TitleWindow = plugin.GetType().FullName;
+        loading.ViewModel.Text = $"Загрузка {plugin.GetType()}";
+        
+        var progress = new Progress<int>(p => loading.ViewModel.Progress = p);
+        loading.Show();
+        
+        await layout.SetPluginAsync(plugin.GetType(), progress, cancellationTokenSource);
+        loading.Close();
+    }
+
+    private async void InformationModal(string text)
+    {
+        var dialog = new InformationWindow($"{text}", "Дополнительная информация");
+        dialog.Width = 300;
+        dialog.Height = 150;
+        Window parent = (Window)MainCanvas.Parent.Parent.Parent;
+        await dialog.ShowDialog(parent);
+    }
+
 
     public void ChangeFillState()
     {
@@ -84,7 +185,7 @@ public partial class MainWindowViewModel : ReactiveObject
         if (MainCanvas!.Children.Count > 0)
         {
             int maxChild = MainCanvas!.Children!.OfType<LayoutWindow>()!.MaxBy(ch => ch.ZIndex)!.ZIndex!;
-        
+
             foreach (var child in MainCanvas!.Children!.OfType<LayoutWindow>())
             {
                 if (child.ZIndex == maxChild)
@@ -97,19 +198,16 @@ public partial class MainWindowViewModel : ReactiveObject
                 }
             }
         }
-        
-        
     }
 
     private void ChangeShape()
     {
-        
         foreach (var item in MainCanvas.Children)
         {
             if (item.DataContext is LayoutWindowViewModel lwv)
             {
                 lwv.Layout.CurrentShape = Shape;
-                
+
                 lwv.PaintCursor = new Cursor(StandardCursorType.Cross);
                 if (Shape == ShapeType.Eraser)
                 {
@@ -123,11 +221,10 @@ public partial class MainWindowViewModel : ReactiveObject
                 {
                     lwv.PaintCursor = new Cursor(StandardCursorType.DragCopy);
                 }
-                
             }
         }
     }
-    
+
 
     private void ChangeBrushSize()
     {
@@ -170,7 +267,8 @@ public partial class MainWindowViewModel : ReactiveObject
     public void CreateNewLayout()
     {
         LayoutWindow innerWindowView = new LayoutWindow();
-        innerWindowView.PaintArea.Layout.CurrentColor = new SKColor(ColorPalette.Color.ToUInt32());;
+        innerWindowView.PaintArea.Layout.CurrentColor = new SKColor(ColorPalette.Color.ToUInt32());
+        ;
         innerWindowView.PaintArea.Layout.BrushSize = SliderValue;
         innerWindowView.PaintArea.Layout.CurrentShape = Shape;
         innerWindowView.PaintArea.Layout.isFill = isFill;
@@ -180,7 +278,7 @@ public partial class MainWindowViewModel : ReactiveObject
         {
             innerWindowView.ZIndex = MainCanvas!.Children!.OfType<LayoutWindow>()!.MaxBy(ch => ch!.ZIndex)!.ZIndex + 1;
         }
-        
+
         MainCanvas.Children.Add(innerWindowView);
     }
 
@@ -203,13 +301,13 @@ public partial class MainWindowViewModel : ReactiveObject
 
         var layout = MainCanvas.Children.OfType<LayoutWindow>().MaxBy(w => w.ZIndex)!
             .PaintArea.Layout;
-        
+
         if (layout != null)
         {
             layout.SaveCanvas(path);
         }
     }
-    
+
     [Obsolete("Obsolete")]
     public async Task SaveConditionalAsync()
     {
@@ -237,13 +335,12 @@ public partial class MainWindowViewModel : ReactiveObject
                 filters
             );
             if (string.IsNullOrEmpty(path)) return;
-        
+
             if (layout != null)
             {
                 layout.SaveCanvas(path);
             }
         }
-        
     }
 
     public async Task LoadAsync()
@@ -262,7 +359,8 @@ public partial class MainWindowViewModel : ReactiveObject
             foreach (var pathString in path)
             {
                 LayoutWindow innerWindowView = new LayoutWindow();
-                innerWindowView.PaintArea.Layout.CurrentColor = new SKColor(ColorPalette.Color.ToUInt32());;
+                innerWindowView.PaintArea.Layout.CurrentColor = new SKColor(ColorPalette.Color.ToUInt32());
+                ;
                 innerWindowView.PaintArea.Layout.isFill = isFill;
                 innerWindowView.PaintArea.Layout.CurrentShape = Shape;
                 innerWindowView.PaintArea.Layout.BrushSize = SliderValue;
@@ -282,46 +380,46 @@ public partial class MainWindowViewModel : ReactiveObject
             MainCanvas.Children[i].ZIndex = i;
             MainCanvas.Children[i].Height = 100;
             MainCanvas.Children[i].Width = 200;
-            Canvas.SetTop(MainCanvas.Children[i], offset*i);
-            Canvas.SetLeft(MainCanvas.Children[i], offset*i);
+            Canvas.SetTop(MainCanvas.Children[i], offset * i);
+            Canvas.SetLeft(MainCanvas.Children[i], offset * i);
         }
     }
 
     public void OnLeftToRightCascade()
     {
         if (MainCanvas.Children.Count == 0) return;
-    
+
         var totalWidth = MainCanvas.Bounds.Width;
         var segmentWidth = totalWidth / MainCanvas.Children.Count;
-    
+
         for (int i = 0; i < MainCanvas.Children.Count; i++)
         {
             var child = MainCanvas.Children[i];
             child.ZIndex = i;
             Canvas.SetLeft(child, segmentWidth * i);
             Canvas.SetTop(child, 0);
-        
-            
+
+
             child.Width = segmentWidth;
             child.Height = MainCanvas.Bounds.Height;
         }
     }
-    
+
     public void OnTopToBottomCascade()
     {
         if (MainCanvas.Children.Count == 0) return;
-    
+
         var totalHeight = MainCanvas.Bounds.Height;
         var segmentHeight = totalHeight / MainCanvas.Children.Count;
-    
+
         for (int i = 0; i < MainCanvas.Children.Count; i++)
         {
             var child = MainCanvas.Children[i];
             child.ZIndex = i;
             Canvas.SetLeft(child, 0);
             Canvas.SetTop(child, segmentHeight * i);
-        
-            
+
+
             child.Height = segmentHeight;
             child.Width = MainCanvas.Bounds.Width;
         }
@@ -333,15 +431,17 @@ public partial class MainWindowViewModel : ReactiveObject
             .PaintArea.Layout;
         layout.ZoomIn();
     }
-    
+
     public void OnZoomMinus()
     {
         var layout = MainCanvas.Children.OfType<LayoutWindow>().MaxBy(w => w.ZIndex)!
             .PaintArea.Layout;
         layout.ZoomOut();
     }
+
+    public async Task SetPlugin(Type filter, Progress<int> progress)
+    {
+      
+        
+    }
 }
-
-
-
-

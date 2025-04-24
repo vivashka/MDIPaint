@@ -1,0 +1,16 @@
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\bin\Debug\net8.0\MatrixMedianPlugin.deps.json
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\bin\Debug\net8.0\MatrixMedianPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\bin\Debug\net8.0\MatrixMedianPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\bin\Debug\net8.0\PluginInterface.dll
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\bin\Debug\net8.0\PluginInterface.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.csproj.AssemblyReference.cache
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.AssemblyInfoInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.AssemblyInfo.cs
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.csproj.CoreCompileInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.sourcelink.json
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMe.CF6EF659.Up2Date
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\refint\MatrixMedianPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\MatrixMedianPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\MatrixMedianPlugin\obj\Debug\net8.0\ref\MatrixMedianPlugin.dll

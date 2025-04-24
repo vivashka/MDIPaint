@@ -4,8 +4,11 @@
     <option name="projectPerEditor">
       <map>
         <entry key="MDIPaint/App.axaml" value="MDIPaint/MDIPaint.csproj" />
+        <entry key="MDIPaint/Views/InformationWindow.axaml" value="MDIPaint/MDIPaint.csproj" />
         <entry key="MDIPaint/Views/LayoutWindow.axaml" value="MDIPaint/MDIPaint.csproj" />
+        <entry key="MDIPaint/Views/LoadingModal.axaml" value="MDIPaint/MDIPaint.csproj" />
         <entry key="MDIPaint/Views/MainWindow.axaml" value="MDIPaint/MDIPaint.csproj" />
+        <entry key="MDIPaint/Views/TextInputDialog.axaml" value="MDIPaint/MDIPaint.csproj" />
       </map>
     </option>
   </component>

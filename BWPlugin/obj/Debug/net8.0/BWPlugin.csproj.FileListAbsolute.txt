@@ -1,0 +1,16 @@
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\bin\Debug\net8.0\BWPlugin.deps.json
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\bin\Debug\net8.0\BWPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\bin\Debug\net8.0\BWPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\bin\Debug\net8.0\PluginInterface.dll
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\bin\Debug\net8.0\PluginInterface.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.csproj.AssemblyReference.cache
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.AssemblyInfoInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.AssemblyInfo.cs
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.csproj.CoreCompileInputs.cache
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.sourcelink.json
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.csproj.Up2Date
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\refint\BWPlugin.dll
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\BWPlugin.pdb
+C:\Users\vovac\RiderProjects\MDIPaint\BWPlugin\obj\Debug\net8.0\ref\BWPlugin.dll
