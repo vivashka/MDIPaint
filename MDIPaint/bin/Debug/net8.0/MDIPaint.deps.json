@@ -17,15 +17,12 @@
           "Avalonia.ReactiveUI": "11.2.1",
           "Avalonia.Skia": "11.2.1",
           "Avalonia.Themes.Fluent": "11.2.1",
-          "BWPlugin": "1.0.0",
           "CommunityToolkit.Mvvm": "8.2.1",
-          "MatrixMedianPlugin": "1.0.0",
           "Microsoft.Extensions.Configuration": "10.0.0-preview.3.25171.5",
           "Microsoft.Extensions.Configuration.Binder": "10.0.0-preview.3.25171.5",
           "Microsoft.Extensions.Configuration.FileExtensions": "10.0.0-preview.3.25171.5",
           "Microsoft.Extensions.Configuration.Json": "10.0.0-preview.3.25171.5",
           "Microsoft.Extensions.DependencyInjection": "9.0.1",
-          "PluginInterface": "1.0.0",
           "ReactiveUI.Fody": "19.5.41",
           "SkiaSharp": "3.118.0-preview.2.3",
           "System.Drawing.Common": "9.0.1"
@@ -704,28 +701,6 @@
           }
         }
       },
-      "BWPlugin/1.0.0": {
-        "dependencies": {
-          "PluginInterface": "1.0.0"
-        },
-        "runtime": {
-          "BWPlugin.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "MatrixMedianPlugin/1.0.0": {
-        "dependencies": {
-          "PluginInterface": "1.0.0"
-        },
-        "runtime": {
-          "MatrixMedianPlugin.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "PluginInterface/1.0.0": {
         "dependencies": {
           "SkiaSharp": "3.118.0-preview.2.3"
@@ -1117,16 +1092,6 @@
       "hashPath": "tmds.dbus.protocol.0.20.0.nupkg.sha512"
     },
     "AdditionalInformationPlugin/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BWPlugin/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MatrixMedianPlugin/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

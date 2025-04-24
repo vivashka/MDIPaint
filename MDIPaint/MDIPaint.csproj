@@ -42,9 +42,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AdditionalInformationPlugin\AdditionalInformationPlugin.csproj" />
-      <ProjectReference Include="..\BWPlugin\BWPlugin.csproj" />
-      <ProjectReference Include="..\MatrixMedianPlugin\MatrixMedianPlugin.csproj" />
-      <ProjectReference Include="..\PluginInterface\PluginInterface.csproj" />
     </ItemGroup>
 
     <ItemGroup>

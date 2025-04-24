@@ -1017,32 +1017,6 @@
           "bin/placeholder/AdditionalInformationPlugin.dll": {}
         }
       },
-      "BWPlugin/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "PluginInterface": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/BWPlugin.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BWPlugin.dll": {}
-        }
-      },
-      "MatrixMedianPlugin/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "PluginInterface": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/MatrixMedianPlugin.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/MatrixMedianPlugin.dll": {}
-        }
-      },
       "PluginInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -2736,16 +2710,6 @@
       "path": "../AdditionalInformationPlugin/AdditionalInformationPlugin.csproj",
       "msbuildProject": "../AdditionalInformationPlugin/AdditionalInformationPlugin.csproj"
     },
-    "BWPlugin/1.0.0": {
-      "type": "project",
-      "path": "../BWPlugin/BWPlugin.csproj",
-      "msbuildProject": "../BWPlugin/BWPlugin.csproj"
-    },
-    "MatrixMedianPlugin/1.0.0": {
-      "type": "project",
-      "path": "../MatrixMedianPlugin/MatrixMedianPlugin.csproj",
-      "msbuildProject": "../MatrixMedianPlugin/MatrixMedianPlugin.csproj"
-    },
     "PluginInterface/1.0.0": {
       "type": "project",
       "path": "../PluginInterface/PluginInterface.csproj",
@@ -2763,15 +2727,12 @@
       "Avalonia.ReactiveUI >= 11.2.1",
       "Avalonia.Skia >= 11.2.1",
       "Avalonia.Themes.Fluent >= 11.2.1",
-      "BWPlugin >= 1.0.0",
       "CommunityToolkit.Mvvm >= 8.2.1",
-      "MatrixMedianPlugin >= 1.0.0",
       "Microsoft.Extensions.Configuration >= 10.0.0-preview.3.25171.5",
       "Microsoft.Extensions.Configuration.Binder >= 10.0.0-preview.3.25171.5",
       "Microsoft.Extensions.Configuration.FileExtensions >= 10.0.0-preview.3.25171.5",
       "Microsoft.Extensions.Configuration.Json >= 10.0.0-preview.3.25171.5",
       "Microsoft.Extensions.DependencyInjection >= 9.0.1",
-      "PluginInterface >= 1.0.0",
       "ReactiveUI.Fody >= 19.5.41",
       "SkiaSharp >= 3.118.0-preview.2.3",
       "System.Drawing.Common >= 9.0.1"
@@ -2812,15 +2773,6 @@
           "projectReferences": {
             "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\AdditionalInformationPlugin\\AdditionalInformationPlugin.csproj": {
               "projectPath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\AdditionalInformationPlugin\\AdditionalInformationPlugin.csproj"
-            },
-            "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\BWPlugin\\BWPlugin.csproj": {
-              "projectPath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\BWPlugin\\BWPlugin.csproj"
-            },
-            "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\MatrixMedianPlugin\\MatrixMedianPlugin.csproj": {
-              "projectPath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\MatrixMedianPlugin\\MatrixMedianPlugin.csproj"
-            },
-            "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\PluginInterface\\PluginInterface.csproj": {
-              "projectPath": "C:\\Users\\vovac\\RiderProjects\\MDIPaint\\PluginInterface\\PluginInterface.csproj"
             }
           }
         }

@@ -11,7 +11,6 @@ using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Skia;
-using BWPlugin;
 using MDIPaint.Models.Enum;
 using MDIPaint.Views;
 using PluginInterface;
