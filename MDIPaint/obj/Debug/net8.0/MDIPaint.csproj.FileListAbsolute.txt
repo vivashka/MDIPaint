@@ -164,3 +164,5 @@ C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\bin\Debug\net8.0\System.Text.Json
 C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\bin\Debug\net8.0\appsettings.json
 C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\obj\Debug\net8.0\MDIPaint.csproj.Fody.CopyLocal.cache
+C:\Users\vovac\RiderProjects\MDIPaint\MDIPaint\obj\Debug\net8.0\MDIPaint.csproj.Fody.RuntimeCopyLocal.cache

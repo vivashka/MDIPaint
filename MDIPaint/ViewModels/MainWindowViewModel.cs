@@ -109,7 +109,11 @@ public partial class MainWindowViewModel : ReactiveObject
                             IsVisible = Plugins.Filters[plugin.Name]
                         };
                         item.Header = plugin.Name;
-                        item.Command = ReactiveCommand.Create( () =>  OnSetPlugin(plugin));
+                        item.Command = ReactiveCommand.Create(() =>
+                        {
+                            OnSetPlugin(plugin);
+                            PluginsItems.Close();
+                        });
                         PluginsItems.Items.Add(item);
                     }
                 }
